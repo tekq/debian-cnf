@@ -1,0 +1,19 @@
+cnf() {
+
+	if [ "${1}" = " " ]
+	then
+		echo "Cannot search for nothing."
+	else
+    export raw_output="$(apt-file search ${1} | grep /usr/bin/${1})"
+    export output="${raw_output%:*}"
+
+    if [ "$output" = "${1}" ]
+    then
+      echo "${1} found."
+      echo "Install it by using 'apt install ${1}'"
+    fi
+    unset raw_output
+    unset output
+	fi
+}
+
