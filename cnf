@@ -1,5 +1,4 @@
 cnf() {
-
 	if [ "${1}" = " " ]
 	then
 		echo "Cannot search for nothing."
@@ -9,8 +8,15 @@ cnf() {
 
     if [ "$output" = "${1}" ]
     then
-      echo "${1} found."
-      echo "Install it by using 'apt install ${1}'"
+      if [ "${2}" != "--script" ]
+      then
+        echo "${1} found. You can install it by using:"
+      else
+        echo "But you can install it by using:"
+      fi
+    
+      echo "sudo apt install ${1}"
+    
     fi
     unset raw_output
     unset output
